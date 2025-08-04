@@ -33,79 +33,80 @@ function Home() {
     <>
       {/* HERO SECTION */}
       <motion.section
-  className="w-full bg-white min-h-screen flex items-center"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 0.6 }}
->
-  <div className="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-16 px-4 py-7 md:py-20">
-    
-    {/* Text Content */}
-          <motion.div
-            className="w-full lg:w-1/2 text-center lg:text-left space-y-6"
-            initial={{ rotateY: 90, opacity: 0 }}
-            animate={{ rotateY: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-
-          >
-      <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-        <span className="text-cyan-500">Crafting Smiles</span><br />
-           <span className="text-black font-extrabold">That Speak for Themselves</span>
-
-      </h1>
-
-      <Link
-        to="/booking"
-        className="inline-block md:ml-5 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-6 py-3 mt-4 rounded-lg font-medium animate-bounce transition-all duration-300"
-      >
-        Book Appointment →
-      </Link>
-    </motion.div>
-
-    {/* Image Carousel */}
-    <motion.div
-      className="w-full lg:w-1/2 flex justify-center"
-      initial={{ x: -60, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      className="w-full bg-white min-h-screen flex items-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <Carousel
-        autoPlay
-        infiniteLoop
-        showThumbs={false}
-        showArrows={false}
-        showStatus={false}
-        interval={3000}
-        className="w-full max-w-xl  sm:max-w-md lg:max-w-md xl:max-w-lg 2xl:max-w-xl rounded-2xl"
-      >
-        <div>
-          <img
-            src="/wmremove-transformed.webp"
-            alt="Smiling woman 1"
-            className="rounded-2xl"
-            loading="lazy"
-          />
-        </div>
-        <div>
-          <img
-            src="/crousel-img-1.webp"
-            alt="Smiling woman 2"
-            className="rounded-2xl"
-            loading="lazy"
-          />
-        </div>
-        <div>
-          <img
-            src="/crousel-img-2.webp"
-            alt="Smiling woman 3"
-            className="rounded-2xl"
-            loading="lazy"
-          />
-        </div>
-      </Carousel>
-    </motion.div>
-  </div>
-</motion.section>
+      <div className="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-16 px-4 py-7 md:py-20">
+
+        {/* Text Content */}
+        <motion.div
+          className="w-full lg:w-1/2 text-center lg:text-left space-y-6"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <span className="text-cyan-500">Crafting Smiles</span><br />
+            <span className="text-black font-extrabold">That Speak for Themselves</span>
+          </h1>
+
+          <Link
+            to="/booking"
+            className="inline-block md:ml-5 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-6 py-3 mt-4 rounded-lg font-medium transition-all duration-300 hover:scale-105"
+          >
+            Book Appointment →
+          </Link>
+        </motion.div>
+
+        {/* Image Carousel */}
+        <motion.div
+          className="w-full lg:w-1/2 flex justify-center"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            showArrows={false}
+            showStatus={false}
+            interval={3000}
+            className="w-full max-w-xl sm:max-w-md lg:max-w-md xl:max-w-lg 2xl:max-w-xl rounded-2xl"
+          >
+            <div>
+              <img
+                src="/wmremove-transformed.webp"
+                alt="Smiling woman 1"
+                className="rounded-2xl"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <img
+                src="/crousel-img-1.webp"
+                alt="Smiling woman 2"
+                className="rounded-2xl"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <img
+                src="/crousel-img-2.webp"
+                alt="Smiling woman 3"
+                className="rounded-2xl"
+                loading="lazy"
+              />
+            </div>
+          </Carousel>
+        </motion.div>
+
+      </div>
+    </motion.section>
 
       {/* FEATURES SECTION */}
       <Suspense fallback={<LoadingFallback />}>
@@ -192,14 +193,14 @@ function Home() {
           <DoctorCard />
         </motion.div>
       </Suspense>
-      
-     {/* //TestimonialCarousel/// */}
-     <div className='-mt-5'>
-      {/* Other sections */}
-      <TestimonialCarousel />
-    </div>
 
-   
+      {/* //TestimonialCarousel/// */}
+      <div className='-mt-5'>
+        {/* Other sections */}
+        <TestimonialCarousel />
+      </div>
+
+
       {/* FOOTER */}
       <motion.footer
         className="bg-cyan-800 text-white px-6 py-10 space-y-10"
@@ -210,7 +211,7 @@ function Home() {
       >
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div>
-          <img src="logo-1.png" alt="" className='h-20' />
+            <img src="logo-1.png" alt="" className='h-20' />
           </div>
           <div>
             <h3 className="text-xl font-semibold mb-4">Company</h3>

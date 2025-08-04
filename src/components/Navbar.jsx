@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaCircleUser } from "react-icons/fa6";
 import {
   SignedIn,
   SignedOut,
@@ -54,18 +55,13 @@ function Navbar() {
             Contact Us →
           </Link>
 
-          {/* Auth Buttons */}
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="text-cyan-700 border border-cyan-500 px-3 py-1 rounded-md hover:bg-cyan-100 transition">
-                Sign In
-              </button>
+             <button className="flex items-center gap-1 text-cyan-700  border border-cyan-500  py-1.5 px-3 py-1 rounded-md hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition">
+              Sign in <FaCircleUser />
+             </button>
             </SignInButton>
-            <SignUpButton mode="modal">
-              <button className="text-white bg-cyan-500 px-3 py-1 rounded-md hover:bg-cyan-600 transition">
-                Sign Up
-              </button>
-            </SignUpButton>
+            
           </SignedOut>
 
           <SignedIn>
@@ -102,15 +98,11 @@ function Navbar() {
 
                 <SignedOut>
                   <SignInButton mode="modal">
-                    <button className="text-cyan-700 border border-cyan-500 px-3 py-1 rounded-md hover:bg-cyan-100 transition">
-                      Sign In
-                    </button>
+                     <button className="flex items-center gap-1 text-cyan-700  border border-cyan-500  py-1.5 px-3 py-1 rounded-md hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition">
+              Sign in <FaCircleUser />
+             </button>
                   </SignInButton>
-                  <SignUpButton mode="modal">
-                    <button className="text-white bg-cyan-500 px-3 py-1 rounded-md hover:bg-cyan-600 transition">
-                      Sign Up
-                    </button>
-                  </SignUpButton>
+                 
                 </SignedOut>
 
                 <SignedIn>
