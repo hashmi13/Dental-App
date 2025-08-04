@@ -194,9 +194,9 @@ function Home() {
         </motion.div>
       </Suspense>
 
-      {/* //TestimonialCarousel/// */}
+   
       <div className='-mt-5'>
-        {/* Other sections */}
+        
         <TestimonialCarousel />
       </div>
 

@@ -41,7 +41,7 @@ function Contact() {
           </div>
         </div>
 
-        {/* Contact Form */}
+       
         <div>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>

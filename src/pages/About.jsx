@@ -31,7 +31,7 @@ const DentalCareLanding = () => {
               />
             </div>
 
-            {/* Decorative dots */}
+      
             <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 lg:left-8 lg:translate-x-0">
               <div className="grid grid-cols-8 gap-2">
                 {Array.from({length: 32}).map((_, i) => (
@@ -41,7 +41,6 @@ const DentalCareLanding = () => {
             </div>
           </motion.div>
 
-          {/* Right Side - Content */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -87,7 +86,6 @@ const DentalCareLanding = () => {
         </div>
       </motion.div>
 
-      {/* Services Section */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +94,7 @@ const DentalCareLanding = () => {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
       >
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Left Side - Content */}
+         
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -113,7 +111,7 @@ const DentalCareLanding = () => {
             </h2>
             
             <div className="space-y-6">
-              {/* Repeated features */}
+          
               {[
                 {
                   title: 'Experienced Professionals:',
@@ -151,7 +149,7 @@ const DentalCareLanding = () => {
             </div>
           </motion.div>
 
-          {/* Right Side - Image */}
+     
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}

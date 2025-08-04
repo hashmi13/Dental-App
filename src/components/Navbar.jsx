@@ -21,12 +21,12 @@ function Navbar() {
       className="w-full fixed top-0 left-0 z-50 px-4 md:px-8 py-3 shadow-md bg-transparent backdrop-blur-2xl border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
+     
         <Link to="/" className="text-2xl font-bold text-cyan-600 hover:text-cyan-700 transition-colors">
           <img src="/logo-1.png" alt="Logo" className="h-10" />
         </Link>
 
-        {/* Hamburger */}
+   
         <button
           className="text-3xl md:hidden focus:outline-none transition-transform"
           onClick={() => setIsOpen(!isOpen)}
@@ -40,7 +40,7 @@ function Navbar() {
           </motion.span>
         </button>
 
-        {/* Desktop Links */}
+   
         <div className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-cyan-800 pb-1 border-b-2 border-transparent hover:border-gray-600 transition-all">
             Home

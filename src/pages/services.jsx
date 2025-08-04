@@ -51,7 +51,7 @@ const services = [
   }
 ];
 
-// Stats Data
+
 const stats = [
   { label: "Happy Patients", end: 10000, suffix: "+", description: "Thousands trust us with their smiles." },
   { label: "Satisfaction Rate", end: 98, suffix: "%", description: "Rated excellent by our patients." },
@@ -59,7 +59,7 @@ const stats = [
   { label: "Years of Experience", end: 15, suffix: "+", description: "Decades of combined team experience." }
 ];
 
-// FAQs
+
 const faqs = [
   {
     question: "What should I expect during my first visit?",
@@ -79,7 +79,7 @@ const faqs = [
   }
 ];
 
-// Motion Variants
+
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
@@ -90,7 +90,7 @@ const ServicesWithStatsAndFAQ = () => {
 
   return (
     <>
-      {/* Services Section */}
+
       <motion.section
         className="w-full px-4 py-16 bg-white"
         initial="hidden"
@@ -120,7 +120,7 @@ const ServicesWithStatsAndFAQ = () => {
         </div>
       </motion.section>
 
-      {/* Stats Section */}
+   
       <section className="bg-cyan-100 py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
