@@ -52,7 +52,7 @@ function Navbar() {
     return () => tl.kill();
   }, []);
 
-  // Scroll detection
+ 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -164,10 +164,10 @@ function Navbar() {
             <SignInButton mode="modal">
               <button
                 ref={addToRefs}
-                className={`flex items-center gap-1 py-1.5 px-3 rounded-md backdrop-blur-sm border transition ${
+                className={`flex items-center gap-1 py-1.5  mb-2 px-3 rounded-md backdrop-blur-sm border transition ${
                   scrolled
                     ? "text-black border-black/40 hover:bg-cyan-700 hover:text-white hover:border-cyan-700"
-                    : "text-white border-white/40 hover:bg-cyan-700 hover:text-white hover:border-cyan-700"
+                    : "text-cyan-300 border-cyan-200 hover:bg-cyan-700 hover:text-white hover:border-cyan-700"
                 }`}
               >
                 Sign in <FaCircleUser />
