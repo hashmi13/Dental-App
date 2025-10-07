@@ -35,9 +35,9 @@ function Booking() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center mt-4 bg-gradient-to-r from-cyan-100 to-cyan-200 px-4 py-16">
-      <div className="max-w-3xl w-full bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl shadow-xl p-6 sm:p-10 text-center space-y-6">
-        <h1 className="text-3xl sm:text-4xl font-bold text-cyan-700">
+    <div className="min-h-screen flex items-center justify-center mt-4 bg-white px-4 py-16">
+      <div className=" bg-gradient-to-r from-cyan-100 to-cyan-200 max-w-3xl w-full mt-5 bg-white/30 backdrop-blur-md border border-white/40 rounded-2xl shadow-xl p-6 sm:p-10 text-center space-y-6">
+        <h1 className="text-3xl  sm:text-4xl font-bold text-cyan-700">
           Schedule Your Visit
         </h1>
         <p className="text-gray-700 text-base sm:text-lg">

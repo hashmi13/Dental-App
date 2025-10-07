@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cover } from "three/src/extras/TextureUtils.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,10 +118,10 @@ const HeroSection = () => {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative h-screen sm:h-screen md:h-screen w-full flex items-center justify-centrt bg-cover bg-center bg-fixed px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden"
+        className="relative h-screen sm:h-screen md:h-screen w-full flex items-center bg-cover bg-center bg-fixed px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden"
         style={{
           backgroundImage: "url('hero_image.jpg')",
-         
+             
         }}
       >
         <div className="absolute inset-0 bg-black/30"></div>
@@ -147,7 +148,8 @@ const HeroSection = () => {
         ref={clinicRef}
         className="relative h-screen sm:h-[80vh] md:h-screen w-full flex items-center justify-center lg:justify-end bg-cover bg-center bg-fixed px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden"
         style={{
-          backgroundImage: "url('/clinic_img.jpg')",
+          backgroundImage: "url('/clinic.webp')",
+         
         }}
       >
         <div className="absolute inset-0 bg-black/40"></div>

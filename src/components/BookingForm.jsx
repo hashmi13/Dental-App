@@ -65,8 +65,9 @@ function BookingForm() {
             <label className="block font-medium mb-1">Full Name</label>
             <input
               type="text"
+              placeholder="Patient Name"
               {...register("name", { required: "Name is required" })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-gray-300 text-center rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
           </div>
@@ -75,6 +76,7 @@ function BookingForm() {
             <label className="block font-medium mb-1">Email</label>
             <input
               type="email"
+              placeholder="Patient Email"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -82,7 +84,7 @@ function BookingForm() {
                   message: "Invalid email address"
                 }
               })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-gray-300  text-center rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
           </div>
@@ -91,8 +93,9 @@ function BookingForm() {
             <label className="block font-medium mb-1">Phone Number</label>
             <input
               type="tel"
+              placeholder="Patient Number"
               {...register("phone", { required: "Phone number is required" })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-cyan-500"
             />
             {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
           </div>
@@ -101,7 +104,7 @@ function BookingForm() {
             <label className="block font-medium mb-1">Service</label>
             <select
               {...register("service", { required: "Please select a service" })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="w-full px-3 py-2 border border-gray-300  rounded-md text-center focus:outline-none focus:ring-2 focus:ring-cyan-500"
             >
               <option value="">Select a service</option>
               <option value="Teeth Whitening">Teeth Whitening</option>
@@ -115,24 +118,24 @@ function BookingForm() {
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Preferred Date</label>
+            <label className="block font-medium mb-1 text-center">Preferred Date</label>
             <DatePicker
               selected={selectedDate}
               required
               onChange={(date) => setSelectedDate(date)}
               minDate={new Date()}
               placeholderText="Select a date"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+              className="w-full px-9 py-2 border border-gray-300 text-black text-center cursor-pointer rounded-md focus:outline-cyan-300"
             />
           </div>
 
           <div>
-            <label className="block font-medium mb-1">Preferred Time</label>
+            <label className="block font-medium mb-1 ">Preferred Time</label>
             <select
               required
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+              className="w-full px-3 py-2 border border-gray-300  text-center rounded-md focus:outline-cyan-300"
             >
               <option value="">Select a time</option>
               {timeSlots.map((time) => (
