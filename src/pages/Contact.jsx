@@ -26,17 +26,17 @@ function Contact() {
           </p>
 
           <div>
-            <h4 className="font-semibold text-lg">📍 Address</h4>
+            <h4 className="font-semibold text-lg">Address</h4>
             <p className="text-gray-700 text-sm sm:text-base">
               123 Dental Street, Healthcare City, NY 10001
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-lg">📞 Phone</h4>
+            <h4 className="font-semibold text-lg">Phone</h4>
             <p className="text-gray-700 text-sm sm:text-base">+1 (555) 123-4567</p>
           </div>
           <div>
-            <h4 className="font-semibold text-lg">✉️ Email</h4>
+            <h4 className="font-semibold text-lg">Email</h4>
             <p className="text-gray-700 text-sm sm:text-base">info@smilenest.com</p>
           </div>
         </div>

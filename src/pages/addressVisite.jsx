@@ -31,13 +31,13 @@ const itemVariants = {
 const VisitUsSection = () => {
   return (
     <motion.section
-      className="bg-[#f8f9f7] px-4 py-10 md:px-12 lg:px-2"
+      className="bg-cyan-100 px-4 mt-8  rounded-3xl py-10  md:px-12 lg:px-2"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div className=" p-6 grid lg:grid-cols-2 gap-24 items-center">
         
         <motion.div className="grid grid-cols-2 gap-3">
           {images.map((src, i) => (

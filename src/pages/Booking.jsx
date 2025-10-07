@@ -6,25 +6,31 @@ function Booking() {
 
   if (!isSignedIn) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 space-y-6 text-center">
-        <p className="text-red-600 text-xl font-semibold">
-          You must be signed in to book an appointment.
-        </p>
+     <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 space-y-6 md:space-y-8 text-center">
+  {/* Image Container with Aspect Ratio */}
+  <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl aspect-[4/3] mb-4 sm:mb-6 md:mb-8">
+    <img 
+      src="/signin_img.jpeg" 
+      alt="Sign in illustration" 
+      className="w-full h-full object-cover rounded-lg shadow-lg"
+    />
+  </div>
+ 
+  {/* Buttons Container */}
+  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-xs sm:max-w-sm md:max-w-md justify-center">
+    <SignInButton mode="modal">
+      <button className="bg-cyan-600 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-lg hover:bg-cyan-700 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto text-sm sm:text-base font-medium">
+        Sign In
+      </button>
+    </SignInButton>
 
-        <div className="flex gap-4">
-          <SignInButton mode="modal">
-            <button className="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">
-              Sign In
-            </button>
-          </SignInButton>
-
-          <SignUpButton mode="modal">
-            <button className="bg-white text-cyan-600 border border-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-50 transition">
-              Sign Up
-            </button>
-          </SignUpButton>
-        </div>
-      </div>
+    <SignUpButton mode="modal">
+      <button className="bg-white text-cyan-600 border border-cyan-600 px-6 py-3 sm:px-8 sm:py-3 rounded-lg hover:bg-cyan-50 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto text-sm sm:text-base font-medium">
+        Sign Up
+      </button>
+    </SignUpButton>
+  </div>
+</div>
     );
   }
 

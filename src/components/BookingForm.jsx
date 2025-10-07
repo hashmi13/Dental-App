@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { sendEmail } from "../utils/email";
 
 function BookingForm() {
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState('');
+  const [selectedTime, setSelectedTime] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const timeSlots = [
@@ -15,21 +17,48 @@ function BookingForm() {
   ];
 
   const onSubmit = (data) => {
-    console.log({ ...data, appointmentDate: selectedDate, appointmentTime: selectedTime });
-    setShowSuccess(true);
-    reset();
-    setSelectedDate(null);
-    setSelectedTime('');
-    setTimeout(() => setShowSuccess(false), 3000);
+    const emailData = {
+      // your template variables
+      user_name: data.name,
+      email: data.email, 
+      user_email: data.email,
+      phone: data.phone,
+      user_phone: data.phone,
+      service_name: data.service,
+      appointment_date: selectedDate?.toLocaleDateString(),
+      appointment_time: selectedTime,
+      message: data.message ,
+      // commonly required EmailJS variables
+      to_email: data.email,
+      to_name: data.name,
+      from_name: "Dental App",
+      reply_to: data.email,
+    };
+
+    sendEmail(emailData)
+      .then(() => {
+        setShowSuccess(true);
+        reset();
+        setSelectedDate(null);
+        setSelectedTime("");
+        setTimeout(() => setShowSuccess(false), 3000);
+      })
+      .catch((err) => {
+        console.error(err);
+        const apiMessage = (err && (err.text || err.message)) || "Failed to send email. Please try again.";
+        alert(apiMessage);
+      });
   };
 
   return (
     <div className="relative">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 text-left bg-white rounded-xl p-6 shadow-md w-full max-w-xl mx-auto"
+        className="space-y-6 bg-white rounded-xl p-6 shadow-md w-full max-w-xl mx-auto"
       >
-        <h2 className="text-2xl sm:text-3xl font-semibold text-center text-cyan-700 mb-4">Book Your Appointment</h2>
+        <h2 className="text-2xl sm:text-3xl font-semibold text-center text-cyan-700 mb-4">
+          Book Your Appointment
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -75,12 +104,12 @@ function BookingForm() {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
             >
               <option value="">Select a service</option>
-              <option value="teeth-whitening">Teeth Whitening</option>
-              <option value="dental-implant">Dental Implant</option>
-              <option value="teeth-fillings">Teeth Fillings</option>
-              <option value="oral-surgery">Oral Surgery</option>
-              <option value="crown-bridges">Crown and Bridges</option>
-              <option value="periodontal">Periodontal Care</option>
+              <option value="Teeth Whitening">Teeth Whitening</option>
+              <option value="Dental Implant">Dental Implant</option>
+              <option value="Teeth Fillings">Teeth Fillings</option>
+              <option value="Oral Surgery">Oral Surgery</option>
+              <option value="Crown and Bridges">Crown and Bridges</option>
+              <option value="Periodontal Care">Periodontal Care</option>
             </select>
             {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service.message}</p>}
           </div>
@@ -89,7 +118,7 @@ function BookingForm() {
             <label className="block font-medium mb-1">Preferred Date</label>
             <DatePicker
               selected={selectedDate}
-              required={true}
+              required
               onChange={(date) => setSelectedDate(date)}
               minDate={new Date()}
               placeholderText="Select a date"
@@ -100,13 +129,13 @@ function BookingForm() {
           <div>
             <label className="block font-medium mb-1">Preferred Time</label>
             <select
-             required={true}
+              required
               value={selectedTime}
               onChange={(e) => setSelectedTime(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
             >
               <option value="">Select a time</option>
-              {timeSlots.map(time => (
+              {timeSlots.map((time) => (
                 <option key={time} value={time}>{time}</option>
               ))}
             </select>
@@ -120,7 +149,7 @@ function BookingForm() {
             rows="4"
             placeholder="Add any specific concerns..."
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
-          ></textarea>
+          />
         </div>
 
         <button
@@ -135,7 +164,7 @@ function BookingForm() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-lg px-6 py-8 w-11/12 max-w-md text-center animate-bounce-in">
             <h3 className="text-2xl font-semibold text-green-600 mb-2">Booking Successful!</h3>
-            <p className="text-gray-700">We'll contact you soon to confirm your appointment.</p>
+            <p className="text-gray-700">We’ve sent you a confirmation email!</p>
           </div>
         </div>
       )}

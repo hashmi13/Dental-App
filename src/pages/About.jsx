@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
+import Footer from '../components/Footer'
+import MeetDOC from "../components/smileMaker"
 import Visit from '../pages/addressVisite'
 
 const DentalCareLanding = () => {
@@ -167,7 +169,10 @@ const DentalCareLanding = () => {
           </motion.div>
         </div>
       </motion.div>
-
+        <MeetDOC/>
+        <div>
+          <Footer/>
+        </div>
    
       
     </div>
