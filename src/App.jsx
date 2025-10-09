@@ -13,8 +13,6 @@ import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Services from './pages/services';
 
-import './App.css';
-
 function App() {
   return (
     <div className="app">

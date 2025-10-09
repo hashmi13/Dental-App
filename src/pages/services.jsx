@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 import TestimonialCarousel from './testimonials';
 import Visits from '../pages/addressVisite';
 
@@ -93,93 +94,113 @@ const fadeIn = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
 };
 
+// Custom component for count-up with intersection observer
+const CountUpOnScroll = ({ end, suffix, duration = 2.5 }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  return (
+    <div ref={ref}>
+      {inView ? (
+        <CountUp end={end} suffix={suffix} duration={duration} />
+      ) : (
+        <span>0{suffix}</span>
+      )}
+    </div>
+  );
+};
+
 const ServicesWithStatsAndFAQ = () => {
   const [activeFAQ, setActiveFAQ] = useState(null);
+  const statsRef = useRef(null);
 
   return (
     <>
       {/* Services Section */}
-  <motion.section
-  className="w-full px-4 py-16 bg-white"
-  initial="hidden"
-  whileInView="show"
-  viewport={{ once: true, amount: 0.2 }}
->
-  <div className="max-w-7xl mx-auto">
-    <motion.h2
-      className="text-3xl font-bold text-center mt-5 mb-12 text-gray-800"
-      variants={fadeIn}
-    >
-      Our Dental Services
-    </motion.h2>
+      <motion.section
+        className="w-full px-4 py-16 bg-white"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            className="text-3xl font-bold text-center mt-5 mb-12 text-gray-800"
+            variants={fadeIn}
+          >
+            Our Dental Services
+          </motion.h2>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services.map((service, i) => (
-        <motion.div
-          key={i}
-          className="bg-gradient-to-b from-cyan-50 to-cyan-500 text-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300"
-          variants={fadeIn}
-          whileHover={{ scale: 1.05 }}
-        >
-          {/* Image with new style */}
-          <div className="mb-4 w-full flex justify-center">
-            {service.image && (
-              <div className="overflow-hidden rounded-2xl shadow-lg w-full h-0 pb-[66.66%] relative">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover transform transition duration-500 hover:scale-105"
-                />
-              </div>
-            )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, i) => (
+              <motion.div
+                key={i}
+                className="bg-gradient-to-b from-cyan-50 to-cyan-500 text-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300"
+                variants={fadeIn}
+                whileHover={{ scale: 1.05 }}
+              >
+                {/* Image with new style */}
+                <div className="mb-4 w-full flex justify-center">
+                  {service.image && (
+                    <div className="overflow-hidden rounded-2xl shadow-lg w-full h-0 pb-[66.66%] relative">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="absolute inset-0 w-full h-full object-cover transform transition duration-500 hover:scale-105"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-sm mb-2">{service.description}</p>
+                <p className="text-xs text-gray-200">{service.details}</p>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </motion.section>
 
-          <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-          <p className="text-sm mb-2">{service.description}</p>
-          <p className="text-xs text-gray-200">{service.details}</p>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</motion.section>
-
-   
-<motion.section
-  className="w-full px-4 py-16   bg-gradient-to-b from-cyan-100 to-cyan-100"
-  initial="hidden"
-  whileInView="show"
-  viewport={{ once: true }}
-  variants={fadeIn}
->
-  <div className="max-w-7xl mx-auto">
-    <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
-      Treatment at Bright Smile
-    </h2>
-    
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center gap-6">
-      {treatments.map((treatment, i) => (
-        <motion.div
-          key={i}
-          className="flex flex-col items-center p-2 bg-white rounded-lg shadow-md hover:shadow-lg transition"
-          variants={fadeIn}
-          style={{ width: "182px", height: "170px" }}
-        >
-          <img
-            src={treatment.image}
-            alt={treatment.name}
-            className="rounded-full object-cover mb-2"
-            style={{ width: "90px", height: "90px" }}
-          />
-          <p className="text-center text-lg font-medium text-gray-700">{treatment.name}</p>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</motion.section>
-
+      <motion.section
+        className="w-full px-4 py-16 bg-gradient-to-b from-cyan-100 to-cyan-100"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={fadeIn}
+      >
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+            Treatment at Bright Smile
+          </h2>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center gap-6">
+            {treatments.map((treatment, i) => (
+              <motion.div
+                key={i}
+                className="flex flex-col items-center p-2 bg-white rounded-lg shadow-md hover:shadow-lg transition"
+                variants={fadeIn}
+                style={{ width: "182px", height: "170px" }}
+              >
+                <img
+                  src={treatment.image}
+                  alt={treatment.name}
+                  className="rounded-full object-cover mb-2"
+                  style={{ width: "90px", height: "90px" }}
+                />
+                <p className="text-center text-lg font-medium text-gray-700">{treatment.name}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
 
       {/* Stats Section */}
-      <section className="bg-cyan-100 py-16 px-4">
+      <section 
+        className="bg-cyan-100 py-16 px-4"
+        ref={statsRef}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -188,11 +209,15 @@ const ServicesWithStatsAndFAQ = () => {
                 className="text-center border-r last:border-none px-4"
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true }}
+                viewport={{ once: true, threshold: 0.3 }}
                 variants={fadeIn}
               >
                 <h3 className="text-3xl font-extrabold text-cyan-700 mb-1">
-                  <CountUp end={stat.end} suffix={stat.suffix} duration={2.5} />
+                  <CountUpOnScroll 
+                    end={stat.end} 
+                    suffix={stat.suffix} 
+                    duration={2.5} 
+                  />
                 </h3>
                 <p className="font-semibold text-gray-800">{stat.label}</p>
                 <p className="text-gray-500 text-sm mt-2">{stat.description}</p>

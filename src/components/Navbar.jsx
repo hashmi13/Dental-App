@@ -107,7 +107,7 @@ function Navbar() {
         <button
           ref={hamburgerRef}
           className={`text-3xl md:hidden focus:outline-none transition-colors ${
-            scrolled ? "text-black" : "text-white"
+            scrolled ? "text-black" : "text-cyan-400"
           }`}
           onClick={toggleMobileMenu}
         >
@@ -193,21 +193,21 @@ function Navbar() {
               <Link
                 to="/"
                 onClick={() => setIsOpen(false)}
-                className={scrolled ? "text-black hover:text-cyan-700" : "text-white hover:text-cyan-400"}
+                className={scrolled ? "text-black hover:text-cyan-700" : "text-black hover:text-cyan-400"}
               >
                 Home
               </Link>
               <Link
                 to="/services"
                 onClick={() => setIsOpen(false)}
-                className={scrolled ? "text-black hover:text-cyan-700" : "text-white hover:text-cyan-400"}
+                className={scrolled ? "text-black hover:text-cyan-700" : "text-black hover:text-cyan-400"}
               >
                 Services
               </Link>
               <Link
                 to="/about"
                 onClick={() => setIsOpen(false)}
-                className={scrolled ? "text-black hover:text-cyan-700" : "text-white hover:text-cyan-400"}
+                className={scrolled ? "text-black hover:text-cyan-700" : "text-black hover:text-cyan-400"}
               >
                 About Us
               </Link>

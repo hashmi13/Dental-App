@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -13,7 +11,7 @@ body {
   padding: 0%;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #ebebeb;
+  background-color: #fcf9f9;
 }
 
 button {
