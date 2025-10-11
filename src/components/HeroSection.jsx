@@ -115,7 +115,7 @@ export default function SmoothScrollSlider() {
 
           {/* Text Content */}
          <div className="relative   z-10 max-w-md sm:max-w-xl text-left text-white font-serif space-y-4 sm:space-y-6 mb-24 sm:mb-0">
-  <h2 className="font-bold font-sans  text-5xl sm:text-4xl md:text-5xl lg:text-6xl leading-snug sm:leading-tight break-words">
+  <h2 className="font-bold font-sans  text-5xl sm:text-4xl md:text-5xl lg:text-7xl leading-snug sm:leading-tight break-words">
     {slide.title}
   </h2>
   <p className="text-base  sm:text-lg md:text-xl text-gray-200 leading-relaxed">
