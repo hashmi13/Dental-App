@@ -120,7 +120,7 @@ const ServicesWithStatsAndFAQ = () => {
     <>
       {/* Services Section */}
       <motion.section
-        className="w-full px-4 py-16 bg-white"
+        className="w-full px-4 mt-5 py-16 bg-white"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
@@ -164,7 +164,7 @@ const ServicesWithStatsAndFAQ = () => {
       </motion.section>
 
       <motion.section
-        className="w-full px-4 py-16 bg-gradient-to-b from-cyan-100 to-cyan-100"
+        className="w-full px-4 py-16 bg-gradient-to-b  from-cyan-100 to-cyan-100"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}

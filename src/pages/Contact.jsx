@@ -15,7 +15,7 @@ function Contact() {
   };
 
   return (
-    <div className="flex items-center mt-16justify-center bg-white px-4 py-12">
+    <div className="flex items-center mt-16justify-center mt-10 bg-white px-4 py-12">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white/30 backdrop-blur-md rounded-2xl shadow-xl p-6 sm:p-10 border border-white/40">
 
         {/* Contact Info */}

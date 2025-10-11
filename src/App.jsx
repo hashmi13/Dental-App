@@ -1,10 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
+import ScrollToTop from "./components/ScrollToTop";
+import lenis from './hooks/lenis';
+import '@fontsource/roboto'; // Defaults to weight 400
+
 import {
   SignIn,
   SignUp,
   UserButton,
   SignedIn
 } from '@clerk/clerk-react';
+import './index.css'
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -14,11 +19,12 @@ import Contact from './pages/Contact';
 import Services from './pages/services';
 
 function App() {
+  lenis()
   return (
-    <div className="app">
+    <div>
       <Navbar />
       
-
+      <ScrollToTop />
       <Routes>
         {/* Clerk Auth Routes */}
         <Route path="/sign-in" element={<SignIn routing="path" path="/sign-in" />} />

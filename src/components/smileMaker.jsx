@@ -3,7 +3,7 @@ import React from 'react';
 export default function SmileMakers() {
   const teamMembers = [
     "/fahad.png",
-    "public/male-dr-4.webp",
+    "/male-dr-4.webp",
     "/male-dr-3.webp",
     "/verma.png",
     "/female-dr-1.webp",
@@ -22,9 +22,9 @@ export default function SmileMakers() {
           <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
             Our team of highly trained cosmetic & restorative dentists have been delivering new smiles for over 20 years.
           </p>
-          <button className="bg-green-400 hover:bg-green-600 text-white font-semibold px-8 py-3 md:px-10 md:py-4 rounded-full text-base md:text-lg transition-transform duration-300 transform hover:scale-105 shadow-lg">
+          {/* <button className="bg-green-400 hover:bg-green-600 text-white font-semibold px-8 py-3 md:px-10 md:py-4 rounded-full text-base md:text-lg transition-transform duration-300 transform hover:scale-105 shadow-lg">
             FIND OUT MORE
-          </button>
+          </button> */}
         </div>
 
         {/* Right Column - Team Images */}

@@ -9,32 +9,54 @@ const slides = [
   {
     id: 1,
     bg: "/hero_image.jpg",
-    title: ( <>
-        Crafting <span className="text-cyan-400">Smiles</span> That Speak
-      </>),
-    description: "Transform your smile with our expert dental care.",
+    title: (
+      <>
+        <span className="block sm:inline">Crafting</span>{" "}
+        <span className="block sm:inline text-cyan-400">Smiles</span>{" "}
+        <span className="block sm:inline">That Speak</span>
+      </>
+    ),
+    description:(<>
+       <span className="block sm:inline text-gray-200">Transform your smile with  </span>{" "}
+       <span className="block sm:inline text-gray-200">our expert dental care.</span>{" "}
+       
+    </>),
     buttonText: "Book Appointment",
     buttonLink: "/booking",
   },
   {
     id: 2,
     bg: "/clinic.webp",
-    title: (<>
-    State-of-the-Art <span className="text-cyan-400">Clinic</span>
+    title: (
+      <>
+        <span className="block sm:inline">Next-Level</span>{" "}
+        <span className="block sm:inline text-cyan-400"> Technology</span>
+      </>
+    ),
+    description:(<>
+       <span className="block sm:inline text-gray-200">Modern facilities with the </span>{" "}
+       <span className="block sm:inline text-gray-200">latest dental technology.</span>{" "}
     </>),
-    description: "Modern facilities with the latest dental technology.",
     buttonText: "Explore Services",
     buttonLink: "/services",
   },
   {
     id: 3,
     bg: "/lab_img.avif",
-    title: (<>
-      Precision <span className="text-cyan-400">Laboratory</span>
-    </>),
-    description: "Custom dental solutions crafted with expertise.",
+    title: (
+      <>
+        <span className="block sm:inline">Precision</span>{" "}
+        <span className="block sm:inline text-cyan-400">Laboratory</span>
+      </>
+    ),
+    description:(
+      <>
+         <span className="block sm:inline text-gray-200">Custom dental solutions </span>{" "}
+         <span className="block sm:inline text-gray-200"> crafted with expertise.</span>{" "}
+      </>
+    ),
     buttonText: "Meet Our Experts",
-    buttonLink: "/doctors",
+    buttonLink: "/services",
   },
 ];
 
@@ -68,9 +90,7 @@ export default function SmoothScrollSlider() {
       );
     });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
   return (
@@ -82,7 +102,7 @@ export default function SmoothScrollSlider() {
       {slides.map((slide) => (
         <section
           key={slide.id}
-          className="hslider relative h-screen flex items-center justify-start overflow-hidden px-6 sm:px-10 lg:px-20"
+          className="hslider relative h-screen flex flex-col justify-center items-start overflow-hidden px-6 sm:px-10 lg:px-20"
         >
           {/* Background */}
           <div
@@ -91,23 +111,23 @@ export default function SmoothScrollSlider() {
           ></div>
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
 
           {/* Text Content */}
-          <div className="relative z-10 max-w-xl  text-left text-white font-serif space-y-6">
-            <h2 className="font-bold text-3xl sm:text-5xl  md:text-6xl ">
-              {slide.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-200 leading-relaxed ">
-              {slide.description}
-            </p>
-            <Link
-              to={slide.buttonLink}
-              className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-6 py-3 rounded-lg transition-transform duration-200 transform hover:scale-105 shadow-lg"
-            >
-              {slide.buttonText} →
-            </Link>
-          </div>
+         <div className="relative   z-10 max-w-md sm:max-w-xl text-left text-white font-serif space-y-4 sm:space-y-6 mb-24 sm:mb-0">
+  <h2 className="font-bold font-sans  text-5xl sm:text-4xl md:text-5xl lg:text-6xl leading-snug sm:leading-tight break-words">
+    {slide.title}
+  </h2>
+  <p className="text-base  sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+    {slide.description}
+  </p>
+  <Link
+    to={slide.buttonLink}
+    className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base transition-transform duration-200 transform hover:scale-105 shadow-lg"
+  >
+    {slide.buttonText} →
+  </Link>
+</div>
         </section>
       ))}
     </div>

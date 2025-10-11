@@ -7,7 +7,7 @@ import Visit from '../pages/addressVisite'
 
 const DentalCareLanding = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen mt-6 bg-gray-50">
      
       <motion.div
         initial={{ opacity: 0, y: 40 }}

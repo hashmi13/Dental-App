@@ -217,7 +217,7 @@ function Navbar() {
                 className={`inline-block px-4 py-2 rounded-lg border transition ${
                   scrolled
                     ? "bg-black/10 text-black border-black/20 hover:bg-cyan-700 hover:text-white"
-                    : "bg-white/20 text-white border-white/30 hover:bg-cyan-700 hover:text-white"
+                    : "bg-white/20 text-black border-black/30 hover:bg-cyan-700 hover:text-white"
                 }`}
               >
                 Contact Us →
