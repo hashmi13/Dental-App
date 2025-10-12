@@ -16,11 +16,16 @@ const slides = [
         <span className="block sm:inline">That Speak</span>
       </>
     ),
-    description:(<>
-       <span className="block sm:inline text-gray-200">Transform your smile with  </span>{" "}
-       <span className="block sm:inline text-gray-200">our expert dental care.</span>{" "}
-       
-    </>),
+    description: (
+      <>
+        <span className="block sm:inline text-gray-200">
+          Transform your smile with{" "}
+        </span>
+        <span className="block sm:inline text-gray-200">
+          our expert dental care.
+        </span>
+      </>
+    ),
     buttonText: "Book Appointment",
     buttonLink: "/booking",
   },
@@ -33,10 +38,16 @@ const slides = [
         <span className="block sm:inline text-cyan-400"> Technology</span>
       </>
     ),
-    description:(<>
-       <span className="block sm:inline text-gray-200">Modern facilities with the </span>{" "}
-       <span className="block sm:inline text-gray-200">latest dental technology.</span>{" "}
-    </>),
+    description: (
+      <>
+        <span className="block sm:inline text-gray-200">
+          Modern facilities with the{" "}
+        </span>
+        <span className="block sm:inline text-gray-200">
+          latest dental technology.
+        </span>
+      </>
+    ),
     buttonText: "Explore Services",
     buttonLink: "/services",
   },
@@ -49,10 +60,14 @@ const slides = [
         <span className="block sm:inline text-cyan-400">Laboratory</span>
       </>
     ),
-    description:(
+    description: (
       <>
-         <span className="block sm:inline text-gray-200">Custom dental solutions </span>{" "}
-         <span className="block sm:inline text-gray-200"> crafted with expertise.</span>{" "}
+        <span className="block sm:inline text-gray-200">
+          Custom dental solutions{" "}
+        </span>
+        <span className="block sm:inline text-gray-200">
+          crafted with expertise.
+        </span>
       </>
     ),
     buttonText: "Meet Our Experts",
@@ -63,6 +78,7 @@ const slides = [
 export default function SmoothScrollSlider() {
   const containerRef = useRef(null);
 
+  // ✅ GSAP Background Scroll Effect
   useEffect(() => {
     const getRatio = (el) =>
       window.innerHeight / (window.innerHeight + el.offsetHeight);
@@ -84,13 +100,31 @@ export default function SmoothScrollSlider() {
             end: "bottom top",
             scrub: true,
             invalidateOnRefresh: true,
-            toggleClass: { targets: section, className: "enable" },
           },
         }
       );
     });
 
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+  }, []);
+
+  // ✅ Scroll Reveal for Text + Button
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -114,20 +148,20 @@ export default function SmoothScrollSlider() {
           <div className="absolute inset-0 bg-black/20"></div>
 
           {/* Text Content */}
-         <div className="relative   z-10 max-w-md sm:max-w-xl text-left text-white font-serif space-y-4 sm:space-y-6 mb-24 sm:mb-0">
-  <h2 className="font-bold font-sans  text-5xl sm:text-4xl md:text-5xl lg:text-7xl leading-snug sm:leading-tight break-words">
-    {slide.title}
-  </h2>
-  <p className="text-base  sm:text-lg md:text-xl text-gray-200 leading-relaxed">
-    {slide.description}
-  </p>
-  <Link
-    to={slide.buttonLink}
-    className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base transition-transform duration-200 transform hover:scale-105 shadow-lg"
-  >
-    {slide.buttonText} →
-  </Link>
-</div>
+          <div className="relative z-10 max-w-md sm:max-w-xl text-left text-white font-serif space-y-4 sm:space-y-6 mb-24 sm:mb-0">
+            <h2 className="reveal opacity-0 font-bold font-sans text-5xl sm:text-4xl md:text-5xl lg:text-7xl leading-snug sm:leading-tight break-words transition-all duration-400 ease-in-out">
+              {slide.title}
+            </h2>
+            <p className="reveal opacity-0  text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed transition-all duration-700 ease-in delay-150">
+              {slide.description}
+            </p>
+            <Link
+              to={slide.buttonLink}
+              className="reveal opacity-0  inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base transition-all duration-700 ease-out delay-300 hover:scale-105 shadow-lg"
+            >
+              {slide.buttonText} →
+            </Link>
+          </div>
         </section>
       ))}
     </div>

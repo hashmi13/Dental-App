@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const doctors = [
   {
@@ -80,84 +81,230 @@ const doctors = [
     image: "/saba_banu.png",
     experience: "12+ Years",
     description:
-      "Dr Saba a talented dentist boasting 12+ years of expertise in general dentistry. With a passion for restoring smiles , she combines precision and care to enhance her patient’s oral health.",
+      "Dr Saba a talented dentist boasting 12+ years of expertise in general dentistry. With a passion for restoring smiles , she combines precision and care to enhance her patient's oral health.",
   },
 ];
 
+// Container variant for staggered children
+const containerVariants = {
+  hidden: { 
+    opacity: 1 
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Reduced stagger for faster sequence
+    },
+  },
+};
+
+// Individual card variant
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "tween",
+      ease: "easeOut",
+      duration: 0.5,
+    },
+  },
+};
+
+// Title animation
+const titleVariants = {
+  hidden: {
+    opacity: 0,
+    y: -20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "tween",
+      ease: "easeOut",
+      duration: 0.6,
+    },
+  },
+};
+
+// Modal animations
+const modalVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "tween",
+      ease: "easeOut",
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.9,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
 const DoctorList = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { 
+    once: true, 
+    margin: "-100px" // Increased margin to trigger earlier
+  });
 
   return (
     <div className="w-full bg-cyan-100 mb-5 py-16 space-y-12">
       {/* Title */}
-      <h2 className="text-4xl font-bold text-center text-cyan-700">
+      <motion.h2 
+        className="text-4xl font-bold text-center text-cyan-700 mb-4"
+        variants={titleVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+      >
         Meet Our Doctors
-      </h2>
+      </motion.h2>
 
-      {/* Doctor Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-        {doctors.map((doctor) => (
-          <div
-            key={doctor.id}
-            className="bg-white rounded-2xl p-6 flex border-2 border-cyan-400 flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2"
-          >
-            <img
-              src={doctor.image}
-              alt={doctor.name}
-              loading="lazy"
-              className="w-24 h-24 rounded-full object-cover border-4 border-cyan-100 mb-4 shadow-md"
-            />
-            <h3 className="text-xl font-bold text-gray-800 mb-2">
-              {doctor.name}
-            </h3>
-            <p className="text-sm text-cyan-600 font-semibold mb-3">
-              {doctor.specialty}
-            </p>
-            <button
-              className="mt-2 px-6 py-2 bg-cyan-500 text-white rounded-full hover:bg-cyan-600 transition-all transform hover:scale-110 shadow-md"
-              onClick={() => setSelectedDoctor(doctor)}
+      {/* Doctor Grid with Staggered Animation */}
+      <div ref={containerRef}>
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {doctors.map((doctor) => (
+            <motion.div
+              key={doctor.id}
+              variants={cardVariants}
+              whileHover={{
+                y: -5,
+                transition: { 
+                  type: "tween",
+                  ease: "easeOut",
+                  duration: 0.2 
+                },
+              }}
+              className="bg-white rounded-2xl p-6 flex border-2 border-cyan-400 flex-col items-center text-center shadow-lg hover:shadow-xl cursor-pointer"
             >
-              View Details
-            </button>
-          </div>
-        ))}
+              <motion.img
+                src={doctor.image}
+                alt={doctor.name}
+                loading="lazy"
+                className="w-24 h-24 rounded-full object-cover border-4 border-cyan-100 mb-4 shadow-md"
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { 
+                    type: "tween",
+                    ease: "easeOut",
+                    duration: 0.2 
+                  }
+                }}
+              />
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                {doctor.name}
+              </h3>
+              <p className="text-sm text-cyan-600 font-semibold mb-3">
+                {doctor.specialty}
+              </p>
+              <motion.button
+                className="mt-2 px-6 py-2 bg-cyan-500 text-white rounded-full hover:bg-cyan-600 transition-colors duration-200 shadow-md"
+                whileHover={{ 
+                  scale: 1.05,
+                }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedDoctor(doctor)}
+              >
+                View Details
+              </motion.button>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
 
       {/* Modal */}
       {selectedDoctor && (
-        <div
+        <motion.div
           className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           onClick={() => setSelectedDoctor(null)}
         >
-          <div
+          <motion.div
             className="bg-white rounded-3xl p-8 max-w-md w-full relative shadow-2xl"
+            variants={modalVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
+            <motion.button
               className="absolute top-4 right-4 text-2xl text-gray-600 hover:text-red-500 transition-colors duration-200 z-10 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => setSelectedDoctor(null)}
             >
               ✖
-            </button>
-            <img
+            </motion.button>
+            <motion.img
               src={selectedDoctor.image}
               alt={selectedDoctor.name}
               className="w-32 h-32 rounded-full object-cover border-4 border-cyan-200 mx-auto mb-6 shadow-lg"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ 
+                type: "tween",
+                ease: "easeOut",
+                duration: 0.4 
+              }}
             />
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-2">
+            <motion.h3 
+              className="text-2xl font-bold text-center text-gray-900 mb-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            >
               {selectedDoctor.name}
-            </h3>
-            <p className="text-center text-cyan-600 font-semibold text-lg mb-3">
+            </motion.h3>
+            <motion.p 
+              className="text-center text-cyan-600 font-semibold text-lg mb-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15 }}
+            >
               {selectedDoctor.specialty}
-            </p>
-            <p className="text-center text-cyan-500 font-medium mb-4">
+            </motion.p>
+            <motion.p 
+              className="text-center text-cyan-500 font-medium mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
               {selectedDoctor.experience}
-            </p>
-            <p className="text-center text-gray-700 leading-relaxed">
+            </motion.p>
+            <motion.p 
+              className="text-center text-gray-700 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.25 }}
+            >
               {selectedDoctor.description}
-            </p>
-          </div>
-        </div>
+            </motion.p>
+          </motion.div>
+        </motion.div>
       )}
     </div>
   );

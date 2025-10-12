@@ -63,7 +63,7 @@ const FeaturesSection = () => {
           <motion.div
             key={idx}
             className="relative w-full sm:w-56 md:w-60 lg:w-64 
-                       bg-white border border-black rounded-xl p-5 flex flex-col items-center text-center shadow-lg overflow-hidden
+                       bg-transparent border-2 border-black/40 rounded-xl p-5 flex flex-col items-center text-center shadow-lg overflow-hidden
                        group"
             variants={cardVariants}
             whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}

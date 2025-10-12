@@ -29,27 +29,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Navigation Links */}
-        <div>
-          <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Home",
-              "Services",
-              "About Us",
-              "Why Choose Us",
-              "Testimonials",
-              "Contact Us",
-            ].map((item, i) => (
-              <li
-                key={i}
-                className="hover:text-green-400 cursor-pointer transition-colors"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+        
 
         {/* Contact Info */}
         <div>
@@ -72,7 +52,7 @@ const Footer = () => {
           </p>
           <p className="text-gray-300 text-sm">
             <a href="mailto:info@57dentcare.com" className="hover:text-green-400">
-              info@57dentcare.com
+              info@brightsmile.com
             </a>
           </p>
         </div>
@@ -81,7 +61,7 @@ const Footer = () => {
       {/* Bottom Section */}
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between border-t border-gray-700 pt-6 gap-4">
         <p className="text-gray-400 text-sm">
-          &copy; {new Date().getFullYear()} 57DentCare. All rights reserved.
+          &copy; {new Date().getFullYear()} Bright Smile. All rights reserved.
         </p>
         <div className="flex gap-3 flex-wrap">
           {[FaFacebookF, FaTwitter, FaYoutube, FaPinterest, FaLinkedinIn, FaTiktok, FaInstagram].map(
