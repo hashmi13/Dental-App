@@ -12,7 +12,7 @@ const slides = [
     title: (
       <>
         <span className="block sm:inline">Crafting</span>{" "}
-        <span className="block sm:inline text-cyan-400">Smiles</span>{" "}
+        <span className="block sm:inline text-cyan-400">Smilesss</span>{" "}
         <span className="block sm:inline">That Speak</span>
       </>
     ),
