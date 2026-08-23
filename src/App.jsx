@@ -17,6 +17,7 @@ import About from './pages/About';
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Services from './pages/services';
+import ThankYou from './pages/ThankYou';
 
 function App() {
   lenis()
@@ -38,6 +39,7 @@ function App() {
 
         {/* Booking - auth handled inside Booking.jsx */}
         <Route path="/booking" element={<Booking />} />
+        <Route path="/thank-you" element={<ThankYou />} />
       </Routes>
     </div>
   );
