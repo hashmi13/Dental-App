@@ -12,7 +12,15 @@ const slides = [
     title: (
       <>
         <span className="block sm:inline">Crafting</span>{" "}
-        <span className="block sm:inline text-cyan-400">Smilesss</span>{" "}
+        <span className="block sm:inline text-cyan-400">
+  Smiles
+
+  <img
+    src="/smile.webp"
+    alt=""
+    className="inline-block w-20 h-10  ml-2 -mt-4 align-middle"
+  />
+</span>
         <span className="block sm:inline">That Speak</span>
       </>
     ),
@@ -130,7 +138,7 @@ export default function SmoothScrollSlider() {
   return (
     <div
       ref={containerRef}
-      className="relative isolate overflow-hidden"
+      className="relative isolate   overflow-hidden"
       style={{ zIndex: 0 }}
     >
       {slides.map((slide) => (
@@ -148,7 +156,7 @@ export default function SmoothScrollSlider() {
           <div className="absolute inset-0 bg-black/20"></div>
 
           {/* Text Content */}
-          <div className="relative z-10 max-w-md sm:max-w-xl text-left text-white font-serif space-y-4 sm:space-y-6 mb-24 sm:mb-0">
+          <div className="relative z-10 max-w-[1600px] sm:max-w-2xl text-left text-white font-serif space-y-4 sm:space-y-4 mb-24 sm:mb-0">
             <h2 className="reveal opacity-0 font-bold font-sans text-5xl sm:text-4xl md:text-5xl lg:text-7xl leading-snug sm:leading-tight break-words transition-all duration-400 ease-in-out">
               {slide.title}
             </h2>

@@ -41,7 +41,7 @@ function ThankYou() {
           className="bg-white/80 backdrop-blur-lg border border-cyan-100 rounded-3xl shadow-2xl p-6 sm:p-10 text-center space-y-8 relative overflow-hidden"
         >
           {/* Decorative Top Banner Accent */}
-          <div className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-cyan-500 via-teal-500 to-indigo-500"></div>
+          {/* <div className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-cyan-500 via-teal-500 to-indigo-500"></div> */}
 
           {/* Animated Success Icon Badge */}
           <motion.div
@@ -132,7 +132,7 @@ function ThankYou() {
         </motion.div>
       </div>
 
-      <Footer />
+   
     </div>
   );
 }
