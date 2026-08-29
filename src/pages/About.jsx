@@ -63,7 +63,7 @@ const DentalCareLanding = () => {
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Mission</h3>
               <p className="text-gray-600 leading-relaxed">
-                At 57Dentcare, our mission is to promote optimal oral health and create lasting, confident smiles.
+                At Bright Smile, our mission is to promote optimal oral health and create lasting, confident smiles.
               </p>
             </div>
             

@@ -142,36 +142,38 @@ export default function SmoothScrollSlider() {
       style={{ zIndex: 0 }}
     >
       {slides.map((slide) => (
-        <section
-          key={slide.id}
-          className="hslider relative h-screen flex flex-col justify-center items-start overflow-hidden px-6 sm:px-10 lg:px-20"
+  <section
+    key={slide.id}
+    className="hslider relative h-screen flex flex-col justify-center items-start overflow-hidden"
+  >
+    {/* Background */}
+    <div
+      className="bg absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${slide.bg})` }}
+    ></div>
+
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-black/20"></div>
+
+    {/* Width-matched wrapper — mirrors Navbar's max-w-7xl mx-auto container */}
+    <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8">
+      <div className="max-w-[1600px] sm:max-w-2xl text-left text-white font-serif space-y-4 sm:space-y-4 mb-24 sm:mb-0">
+        <h2 className="reveal opacity-0 font-bold font-sans text-5xl sm:text-4xl md:text-5xl lg:text-7xl leading-snug sm:leading-tight break-words transition-all duration-400 ease-in-out">
+          {slide.title}
+        </h2>
+        <p className="reveal opacity-0 text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed transition-all duration-700 ease-in delay-150">
+          {slide.description}
+        </p>
+        <Link
+          to={slide.buttonLink}
+          className="reveal  opacity-0 inline-block bg-cyan-500 hover:bg-cyan-600 font-sans text-white font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-[22px]  transition-all duration-700 ease-out delay-300 hover:scale-105 shadow-lg"
         >
-          {/* Background */}
-          <div
-            className="bg absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.bg})` }}
-          ></div>
-
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/20"></div>
-
-          {/* Text Content */}
-          <div className="relative z-10 max-w-[1600px] sm:max-w-2xl text-left text-white font-serif space-y-4 sm:space-y-4 mb-24 sm:mb-0">
-            <h2 className="reveal opacity-0 font-bold font-sans text-5xl sm:text-4xl md:text-5xl lg:text-7xl leading-snug sm:leading-tight break-words transition-all duration-400 ease-in-out">
-              {slide.title}
-            </h2>
-            <p className="reveal opacity-0  text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed transition-all duration-700 ease-in delay-150">
-              {slide.description}
-            </p>
-            <Link
-              to={slide.buttonLink}
-              className="reveal opacity-0  inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base transition-all duration-700 ease-out delay-300 hover:scale-105 shadow-lg"
-            >
-              {slide.buttonText} →
-            </Link>
-          </div>
-        </section>
-      ))}
+          {slide.buttonText} →
+        </Link>
+      </div>
+    </div>
+  </section>
+))}
     </div>
   );
 }

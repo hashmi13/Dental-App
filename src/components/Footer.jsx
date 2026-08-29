@@ -51,7 +51,7 @@ const Footer = () => {
             </a>
           </p>
           <p className="text-gray-300 text-sm">
-            <a href="mailto:info@57dentcare.com" className="hover:text-green-400">
+            <a href="mailto:inf" className="hover:text-green-400">
               info@brightsmile.com
             </a>
           </p>
