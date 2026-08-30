@@ -35,7 +35,7 @@ const Footer = () => {
         <div>
           <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
           <p className="text-gray-300 text-sm">
-            123 Dental Avenue, Cityville, State 12345, USA
+            24, Green Avenue, Sector 15, New Delhi, Delhi – 110015
           </p>
           <a
             href="#"

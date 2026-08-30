@@ -31,6 +31,46 @@ const timeSlots = [
   "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"
 ];
 
+// Minutes of buffer required between "now" and a bookable same-day slot.
+// e.g. 30 means a patient can't book a slot starting in the next 30 minutes.
+const SAME_DAY_BUFFER_MINUTES = 30;
+
+// Converts a "09:00 AM" / "02:00 PM" style string into a Date object
+// using the given date's year/month/day.
+function slotToDate(time, baseDate) {
+  const [timePart, meridiem] = time.split(" ");
+  let [hours, minutes] = timePart.split(":").map(Number);
+
+  if (meridiem === "PM" && hours !== 12) hours += 12;
+  if (meridiem === "AM" && hours === 12) hours = 0;
+
+  const slotDate = new Date(baseDate);
+  slotDate.setHours(hours, minutes, 0, 0);
+  return slotDate;
+}
+
+function isSameDay(a, b) {
+  return (
+    a.getDate() === b.getDate() &&
+    a.getMonth() === b.getMonth() &&
+    a.getFullYear() === b.getFullYear()
+  );
+}
+
+// Returns true if this time slot should be disabled/hidden for the given date.
+// Only applies when the selected date is today; future dates are unaffected.
+function isSlotPast(time, date) {
+  if (!date) return false;
+
+  const now = new Date();
+  if (!isSameDay(date, now)) return false;
+
+  const slotDateTime = slotToDate(time, date);
+  const cutoff = new Date(now.getTime() + SAME_DAY_BUFFER_MINUTES * 60000);
+
+  return slotDateTime <= cutoff;
+}
+
 function BookingForm() {
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -52,6 +92,13 @@ function BookingForm() {
     setValue("service", id);
   };
 
+  // Reset the selected time whenever the date changes, so a stale
+  // (possibly now-past) time slot can't stay selected.
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    setSelectedTime("");
+  };
+
   // Direct Booking Submit (Brevo Email & MongoDB)
   const onSubmitEmail = async (data) => {
     if (!selectedDate) {
@@ -60,6 +107,11 @@ function BookingForm() {
     }
     if (!selectedTime) {
       alert("Please select a preferred time slot.");
+      return;
+    }
+    if (isSlotPast(selectedTime, selectedDate)) {
+      alert("That time slot has already passed. Please choose another time.");
+      setSelectedTime("");
       return;
     }
 
@@ -133,6 +185,11 @@ function BookingForm() {
       alert("Please select a preferred time slot.");
       return;
     }
+    if (isSlotPast(selectedTime, selectedDate)) {
+      alert("That time slot has already passed. Please choose another time.");
+      setSelectedTime("");
+      return;
+    }
 
     const serviceObj = servicePrices.find(s => s.id === selectedService) || servicePrices[0];
     const formattedDate = selectedDate.toLocaleDateString();
@@ -170,6 +227,12 @@ function BookingForm() {
       setLoadingStripe(false);
     }
   };
+
+  // Slots to actually render for the currently selected date.
+  // Past slots (for today, within the buffer window) are filtered out.
+  const availableTimeSlots = timeSlots.filter(
+    (time) => !isSlotPast(time, selectedDate)
+  );
 
   return (
     <div className="w-full">
@@ -226,7 +289,7 @@ function BookingForm() {
               <div className="relative">
                 <DatePicker
                   selected={selectedDate}
-                  onChange={(date) => setSelectedDate(date)}
+                  onChange={handleDateChange}
                   minDate={new Date()}
                   placeholderText="Select Date"
                   className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-xl text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 shadow-sm cursor-pointer"
@@ -241,15 +304,27 @@ function BookingForm() {
                 <select
                   value={selectedTime}
                   onChange={(e) => setSelectedTime(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-xl text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 shadow-sm appearance-none cursor-pointer"
+                  disabled={!selectedDate}
+                  className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-xl text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 shadow-sm appearance-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <option value="">Select Time Slot</option>
-                  {timeSlots.map((time) => (
+                  <option value="">
+                    {!selectedDate
+                      ? "Select a date first"
+                      : availableTimeSlots.length === 0
+                      ? "No slots left today"
+                      : "Select Time Slot"}
+                  </option>
+                  {availableTimeSlots.map((time) => (
                     <option key={time} value={time}>{time}</option>
                   ))}
                 </select>
                 <FaClock className="absolute left-3.5 top-3.5 text-gray-400 text-sm pointer-events-none" />
               </div>
+              {selectedDate && availableTimeSlots.length === 0 && (
+                <p className="text-red-500 text-xs mt-1">
+                  All slots for today have passed. Please pick another date.
+                </p>
+              )}
             </div>
           </div>
         </div>

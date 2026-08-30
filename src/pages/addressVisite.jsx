@@ -66,7 +66,7 @@ const VisitUsSection = () => {
           <div className="flex items-start gap-3 mb-4">
             <FaMapMarkerAlt className="text-cyan-600 mt-1" size={22} />
             <p className="text-slate-800 text-base">
-              123 Dental Avenue, Cityville, State 12345, USA
+              24, Green Avenue, Sector 15, New Delhi, Delhi – 110015
             </p>
           </div>
 

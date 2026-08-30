@@ -57,7 +57,7 @@ function Booking() {
             Schedule Your Visit
           </h1>
           <p className="text-gray-600 text-base sm:text-lg max-w-xl mx-auto">
-            Book top-rated dental care with instant Brevo confirmation and secure Stripe payment options.
+            Book top-rated dental care with instant Email confirmation and secure Stripe payment options.
           </p>
 
           {/* Trust Badges */}
@@ -84,7 +84,7 @@ function Booking() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="bg-white/90 backdrop-blur-xl border border-cyan-100 rounded-3xl shadow-2xl p-6 sm:p-10 relative overflow-hidden"
         >
-          <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-cyan-500 via-teal-500 to-indigo-600"></div>
+          {/* <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-cyan-500 via-teal-500 to-indigo-600"></div> */}
           <BookingForm />
         </motion.div>
       </div>
